@@ -40,11 +40,6 @@ void draw(int y, int x);
 
 int main()
 {
-    if(geteuid() != 0)
-    {
-	printf("Please run as root for beep!\n");
-	exit(1);
-    }
     initscr(); //Start ncurses
     noecho(); //No key output on screen
     curs_set(0); //Cursor be gone!
