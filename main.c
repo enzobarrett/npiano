@@ -40,7 +40,7 @@ void draw(int y, int x);
 
 int main()
 {
-	int abeep = system("beep 2>/dev/null"); // detects whether to use beep or abeep
+	int abeep = system("beep -l 1 2>/dev/null"); // detects whether to use beep or abeep
     initscr(); //Start ncurses
     noecho(); //No key output on screen
     curs_set(0); //Cursor be gone!
