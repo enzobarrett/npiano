@@ -29,7 +29,7 @@
 #define B1  B*2.0
 #define C2  C1*2.0
 
-void play(double d, int l);
+void play(double d, int l, int abeep);
 void set(int y, int x, char c, int status);
 void draw(int y, int x);
 
@@ -40,6 +40,7 @@ void draw(int y, int x);
 
 int main()
 {
+	int abeep = system("beep 2>/dev/null"); // detects whether to use beep or abeep
     initscr(); //Start ncurses
     noecho(); //No key output on screen
     curs_set(0); //Cursor be gone!
@@ -60,7 +61,7 @@ int main()
     //xy
     int x,y;
     //length
-    int leng = 100;
+    int leng = 1000;
     //Loop until user quits
     while((c = getch()) != EOF)
     {
@@ -76,163 +77,163 @@ int main()
 		y = -1;
 		if(leng > 0)
 		    leng-=10;
-		mvprintw(0, COLS-4, "%4d", leng);
+		mvprintw(0, COLS-4, "%4d", leng, abeep);
 		break;
 	    case KEY_UP:
 		y = -1;
 		if(leng < 1000)
 		    leng+=10;
-		mvprintw(0, COLS-4, "%4d", leng);
+		mvprintw(0, COLS-4, "%4d", leng, abeep);
 		break;
 	    case 'z':
 		y = row1;
 		x = posx+2;
 		set(y, x, c, 1);
-		play(C, leng);
+		play(C, leng, abeep);
 		break;
 	    case 'x':
 		y = row1;
 		x = posx+6;
 		set(y, x, c, 1);
-		play(D, leng);
+		play(D, leng, abeep);
 		break;
 	    case 'c':
 		y = row1;
 		x = posx+10;
 		set(y, x, c, 1);
-		play(E, leng);
+		play(E, leng, abeep);
 		break;
 	    case 'v':
 		y = row1;
 		x = posx+14;
 		set(y, x, c, 1);
-		play(F, leng);
+		play(F, leng, abeep);
 		break;
 	    case 'b':
 		y = row1;
 		x = posx+18;
 		set(y, x, c, 1);
-		play(G, leng);
+		play(G, leng, abeep);
 		break;
 	    case 'n':
 		y = row1;
 		x = posx+22;
 		set(y, x, c, 1);
-		play(A, leng);
+		play(A, leng, abeep);
 		break;
 	    case 'm':
 		y = row1;
 		x = posx+26;
 		set(y, x, c, 1);
-		play(B, leng);
+		play(B, leng, abeep);
 		break;
 	    case 'q':
 		y = row1;
 		x = posx+30;
 		set(y, x, c, 1);
-		play(C1, leng);
+		play(C1, leng, abeep);
 		break;
 	    case 'w':
 		y = row1;
 		x = posx+34;
 		set(y, x, c, 1);
-		play(D1, leng);
+		play(D1, leng, abeep);
 		break;
 	    case 'e':
 		y = row1;
 		x = posx+38;
 		set(y, x, c, 1);
-		play(E1, leng);
+		play(E1, leng, abeep);
 		break;
 	    case 'r':
 		y = row1;
 		x = posx+42;
 		set(y, x, c, 1);
-		play(F1, leng);
+		play(F1, leng, abeep);
 		break;
 	    case 't':
 		y = row1;
 		x = posx+46;
 		set(y, x, c, 1);
-		play(G1, leng);
+		play(G1, leng, abeep);
 		break;
 	    case 'y':
 		y = row1;
 		x = posx+50;
 		set(y, x, c, 1);
-		play(A1, leng);
+		play(A1, leng, abeep);
 		break;
 	    case 'u':
 		y = row1;
 		x = posx+54;
 		set(y, x, c, 1);
-		play(B1, leng);
+		play(B1, leng, abeep);
 		break;
 	    case 'i':
 		y = row1;
 		x = posx+58;
 		set(y, x, c, 1);
-		play(C2, leng);
+		play(C2, leng, abeep);
 		break;
 	    case 's':
 		y = row2;
 		x = posx+4;
 		set(y, x, c, 1);
-		play(C_, leng);
+		play(C_, leng, abeep);
 		break;
 	    case 'd':
 		y = row2;
 		x = posx+8;
 		set(y, x, c, 1);
-		play(D_, leng);
+		play(D_, leng, abeep);
 		break;
 	    case 'g':
 		y = row2;
 		x = posx+16;
 		set(y, x, c, 1);
-		play(F_, leng);
+		play(F_, leng, abeep);
 		break;
 	    case 'h':
 		y = row2;
 		x = posx+20;
 		set(y, x, c, 1);
-		play(G_, leng);
+		play(G_, leng, abeep);
 		break;
 	    case 'j':
 		y = row2;
 		x = posx+24;
 		set(y, x, c, 1);
-		play(A_, leng);
+		play(A_, leng, abeep);
 		break;
 	    case '2':
 		y = row2;
 		x = posx+32;
 		set(y, x, c, 1);
-		play(C_1, leng);
+		play(C_1, leng, abeep);
 		break;
 	    case '3':
 		y = row2;
 		x = posx+36;
 		set(y, x, c, 1);
-		play(D_1, leng);
+		play(D_1, leng, abeep);
 		break;
 	    case '5':
 		y = row2;
 		x = posx+44;
 		set(y, x, c, 1);
-		play(F_1, leng);
+		play(F_1, leng, abeep);
 		break;
 	    case '6':
 		y = row2;
 		x = posx+48;
 		set(y, x, c, 1);
-		play(G_1, leng);
+		play(G_1, leng, abeep);
 		break;
 	    case '7':
 		y = row2;
 		x = posx+52;
 		set(y, x, c, 1);
-		play(A_1, leng);
+		play(A_1, leng, abeep);
 		break;
 	    /*case '0':
 		Play a surprise 
@@ -255,12 +256,20 @@ int main()
     return 0;
 }
 
-void play(double f, int len)
+void play(double f, int len, int abeep)
 {
     //Play beep based on frequency and length selected
     char command[50];
-    snprintf(command, sizeof(command), "beep -f %f -l %d", f, len);
-    system(command);
+	if(abeep) {
+		snprintf(command, sizeof(command), "abeep -f %f -l %d &", f, len);
+		system("pkill abeep 2>/dev/null");
+		system(command);
+	}
+	else {
+		snprintf(command, sizeof(command), "beep -f %f -l %d &", f, len);
+		system("pkill beep 2>/dev/null");
+		system(command);
+	}
 }
 
 void set(int y, int x, char c, int state)
