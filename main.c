@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ncurses.h>
-#include <unistd.h> //For sleep
+#include <unistd.h> // For sleep
 
 #define C   130.81
 #define C_  138.59
@@ -40,34 +40,39 @@ void draw(int y, int x);
 
 int main()
 {
-	int abeep = system("beep -l 1 2>/dev/null"); // detects whether to use beep or abeep
-    initscr(); //Start ncurses
-    noecho(); //No key output on screen
-    curs_set(0); //Cursor be gone!
-    keypad(stdscr, TRUE); //Makes arrow keys work
-    //Print keyboard
+    int abeep = system("beep -l 1 2>/dev/null"); // detects whether to use beep or abeep
+    initscr(); // Start ncurses
+    noecho(); // No key output on screen
+    curs_set(0); // Cursor be gone!
+    keypad(stdscr, TRUE); // Makes arrow keys work
+
+    // Print keyboard
     int posx = (COLS/2)-30;
     int posy = (LINES/2)-5;
     draw(posy,posx);
-    //Input holder
+
+    // Input holder
     int c;
-    //Y for rows 
+
+    // Y for rows 
     int row1 = posy+6;
     int row2 = posy+3;
-    //Last times vars
+
+    // Last times vars
     int last = 0;
     int lx;
     int ly;
-    //xy
+
+    // xy
     int x,y;
-    //length
+
+    // length
     int leng = 1000;
-    //Loop until user quits
+
+    // Loop until user quits
     while((c = getch()) != EOF)
     {
-	//if(last != 0 && y != -1)
-	//    set(ly, lx, last, 0);
-	//Play note depending on key pressed
+	// Play note depending on key pressed
 	switch(c) 
 	{
 	    case KEY_RESIZE:
@@ -235,11 +240,6 @@ int main()
 		set(y, x, c, 1);
 		play(A_1, leng, abeep);
 		break;
-	    /*case '0':
-		Play a surprise 
-		system("beep -f 130 -l 100 -n -f 262 -l 100 -n -f 330 -l 100 -n -f 392 -l 100 -n -f 523 -l 100 -n -f 660 -l 100 -n -f 784 -l 300 -n -f 660 -l 300 -n -f 146 -l 100 -n -f 262 -l 100 -n -f 311 -l 100 -n -f 415 -l 100 -n -f 523 -l 100 -n -f 622 -l 100 -n -f 831 -l 300 -n -f 622 -l 300 -n -f 155 -l 100 -n -f 294 -l 100 -n -f 349 -l 100 -n -f 466 -l 100 -n -f 588 -l 100 -n -f 699 -l 100 -n -f 933 -l 300 -n -f 933 -l 100 -n -f 933 -l 100 -n -f 933 -l 100 -n -f 1047 -l 400");
-		y = -1;
-		x = -1;*/
 	    default:
 		y = -1;
 		x = -1;
@@ -258,7 +258,7 @@ int main()
 
 void play(double f, int len, int abeep)
 {
-    //Play beep based on frequency and length selected
+    // Play beep based on frequency and length selected
     char command[50];
 	if(abeep) {
 		snprintf(command, sizeof(command), "abeep -f %f -l %d &", f, len);
@@ -274,7 +274,7 @@ void play(double f, int len, int abeep)
 
 void set(int y, int x, char c, int state)
 {
-    //Either turn on or off key highlight
+    // Either turn on or off key highlight
     move(y,x);
     if(state == 1)
 	addch(c | A_STANDOUT);
@@ -285,7 +285,7 @@ void set(int y, int x, char c, int state)
 
 void draw(int posy, int posx)
 {
-    //Clear the screen and draw the keyboard, terminal size dependent
+    // Clear the screen and draw the keyboard, terminal size dependent
     clear();
     mvprintw(posy,   posx, "_____________________________________________________________");
     mvprintw(posy+1, posx, "|  | | | |  |  | | | | | |  |  | | | |  |  | | | | | |  |   |");
